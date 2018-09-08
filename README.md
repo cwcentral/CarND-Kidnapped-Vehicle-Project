@@ -45,7 +45,7 @@ translation and yaw error was less that specified (0.116, 0.109, 0.004) in (x,y,
 (Click to play video)
 [![Output](output/final.png)](https://youtu.be/xtlfm_3F0YU "Click to Play Video")
 
-## Sumamry
+## Summary
 Does your particle filter localize the vehicle to within the desired accuracy? Yes, I obtained the success message in the sim.
 
 Does your particle run within the specified time of 100 seconds? Yes, the sim runs within 60 seconds with the success message.
@@ -54,12 +54,14 @@ Does your code use a particle filter to localize the robot? Yes.
 
 ## Bonus
 Note I ran the simulator at 1000 particles and this is what we got (0.107, 0.102, 0.004):
-[1000 particles](output/k_particles.png)
+1000 particles
+<img src="output/k_particles.png" width="480" alt="Combined Image" />
 
 It was more accurate, though required more compute.
 
-Note I ran the simulator at 10 particles and this is what we got:
-[10 particles](output/ten_particles.png)
+ote I ran the simulator at 10 particles and this is what we got:
+10 particles
+<img src="output/ten_particles.png" width="480" alt="Combined Image" />
 
 Note the x,y,theta error was higher (0.155, 0.151, 0.005), but still within tolerance. Thus showing how robust the particle filter technique is.
 
