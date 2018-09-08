@@ -45,7 +45,9 @@ We've implemented the particle filter and succsssfully tracked the position of t
 
 ## Sumamry
 Does your particle filter localize the vehicle to within the desired accuracy? Yes, I obtained the success message in the sim.
+
 Does your particle run within the specified time of 100 seconds? Yes, the sim runs within 60 seconds with the success message.
+
 Does your code use a particle filter to localize the robot? Yes.
 
 
