@@ -54,14 +54,21 @@ Does your code use a particle filter to localize the robot? Yes.
 
 ## Bonus
 Note I ran the simulator at 1000 particles and this is what we got (0.107, 0.102, 0.004):
+
 1000 particles
+
 <img src="output/k_particles.png" width="480" alt="Combined Image" />
+
 
 It was more accurate, though required more compute.
 
-ote I ran the simulator at 10 particles and this is what we got:
+
+I ran the simulator at 10 particles and this is what we got:
+
 10 particles
+
 <img src="output/ten_particles.png" width="480" alt="Combined Image" />
+
 
 Note the x,y,theta error was higher (0.155, 0.151, 0.005), but still within tolerance. Thus showing how robust the particle filter technique is.
 
