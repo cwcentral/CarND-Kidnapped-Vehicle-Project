@@ -17,7 +17,7 @@ The main program can be built and ran by doing the following from the project to
 2. ./build.sh
 3. ./run.sh
 
-Rubric goals are to build out the methods in `particle_filter.cpp` until the simulator output says:
+[Rubric goals](https://review.udacity.com/#!/rubrics/747/view) are to build out the methods in `particle_filter.cpp` until the simulator output says:
 
 ```
 Success! Your particle filter passed!
