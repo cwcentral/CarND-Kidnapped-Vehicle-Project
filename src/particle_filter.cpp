@@ -18,9 +18,9 @@ using namespace std;
 // This is a random number engine class that generates pseudo-random numbers.
 std::default_random_engine gen;
 
+// See lesson 14.4
 void ParticleFilter::init(double x, double y, double theta, double std[])
 {
-
 	// init once per execution
 	if (is_initialized)
 		return;
@@ -64,6 +64,10 @@ void ParticleFilter::prediction(double delta_t, double std_pos[],
 	//  http://en.cppreference.com/w/cpp/numeric/random/normal_distribution
 	//  http://www.cplusplus.com/reference/random/default_random_engine/
 
+	//
+	// See lesson 14.5 and 14.6
+	//
+
 	// get a set of random particles around the origin reference to vehicle
 	// aka the reference position of the vehicle is (0,0,0) is the center of
 	// its coord system
@@ -106,6 +110,10 @@ void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted,
 	//   observed measurement to this particular landmark.
 	// NOTE: this method will NOT be called by the grading code. But you will probably find it useful to 
 	//   implement this method and use it as a helper during the updateWeights phase.
+
+	//
+	// See lesson 14.10
+	//
 
 	// for each observations and find the landmarks that are closest to it
 	// considering the predicted landmarks were randomized
@@ -155,9 +163,14 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	//   3.33
 	//   http://planning.cs.uiuc.edu/node99.html
 
+
 	// get sigmas
 	double std_landmark_range = std_landmark[0];
 	double std_landmark_bearing = std_landmark[1];
+
+	//
+	// See lesson 14.17
+	//
 
 	// for each particle, cnonvert them from vehicle cooridnate system to mapped coordinate
 	// system
@@ -199,6 +212,10 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 			}
 		}
 
+		//
+		// See lesson 14.18
+		//
+
 		// we have the landmarks close to the observations
 		// in the right coordinate system, now associate
 		dataAssociation(pois, mapped_obs);
@@ -221,6 +238,10 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 					break;
 				}
 			}
+
+			//
+			// See lesson 14.20
+			//
 
 			// get xy diff distance
 			double d_x = mapped_obs[j].x - land_x;
@@ -251,56 +272,15 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	}
 }
 
-#ifdef XXXX
-void ParticleFilter::resample()
-{
-	// TODO: Resample particles with replacement with probability proportional to their weight.
-	// NOTE: You may find std::discrete_distribution helpful here.
-	//   http://en.cppreference.com/w/cpp/numeric/random/discrete_distribution
-
-	// Get weights and max weight in the set of particles so we can determined if they need to be thrown out..
-	vector<double> weights;
-	double maxWeight = numeric_limits<double>::min();
-	for (int i = 0; i < num_particles; i++)
-	{
-		weights.push_back(particles[i].weight);
-		if (particles[i].weight > maxWeight)
-		{
-			maxWeight = particles[i].weight;
-		}
-	}
-
-	// Creating distributions.
-	uniform_real_distribution<double> distDouble(0.0, maxWeight);
-	uniform_int_distribution<int> distInt(0, num_particles - 1);
-
-	// Generating index.
-	int index = distInt(gen);
-
-	double beta = 0.0;
-
-	// the wheel
-	vector<Particle> resampledParticles;
-	for (int i = 0; i < num_particles; i++)
-	{
-		beta += distDouble(gen) * 2.0;
-		while (beta > weights[index])
-		{
-			beta -= weights[index];
-			index = (index + 1) % num_particles;
-		}
-		resampledParticles.push_back(particles[index]);
-	}
-
-	particles = resampledParticles;
-}
-#endif
-
 void ParticleFilter::resample()
 {
 	// TODO: Resample particles with replacement with probability proportional to their weight. 
 	// NOTE: You may find std::discrete_distribution helpful here.
 	//   http://en.cppreference.com/w/cpp/numeric/random/discrete_distribution
+
+	//
+	// See lesson 14.12
+	//
 
 	vector<double> weights;
 	for (int i = 0; i < num_particles; i++)
@@ -310,6 +290,7 @@ void ParticleFilter::resample()
 	double beta = 0.0;
 
 	auto max_weight = *std::max_element(weights.begin(), weights.end());
+
 
 	uniform_real_distribution<double> random_weight(0.0, max_weight);
 	uniform_int_distribution<int> particle_index(0, num_particles - 1);
